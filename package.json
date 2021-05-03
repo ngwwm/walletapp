@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "node-linq": "^0.0.5"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "walletapp",
+  "version": "1.0.0",
+  "description": "wallet backend app",
+  "main": "server.js",
+  "devDependencies": {
+    "coffee-script": "^1.12.7",
+    "tap": "^15.0.6"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,12 @@
+{
+	{
+		userid: 1001,
+		username: "martin",
+		walletid: 2001
+	},
+	{
+		userid: 1002,
+		username: "eddie",
+		walletid: 2002
+	}
+}

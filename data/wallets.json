@@ -1,0 +1,23 @@
+[
+    {
+        "wallet_id": 2001,
+        "user_id": 1001,
+        "balances": {
+            "hkd": {
+                "amt": 92.22
+            },
+            "usd": {
+                "amt": 1
+            }
+        }
+    },
+    {
+        "wallet_id": 2002,
+        "user_id": 1002,
+        "balances": {
+            "hkd": {
+                "amt": 80
+            }
+        }
+    }
+]
