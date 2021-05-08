@@ -16,18 +16,18 @@ const config = global.__config;
 let access_token;
 
 /* check balance api */
-router.post('/balance', function (req, res) {	
-	console.debug('[',moment().utcOffset(8).format('YYYY-MM-DD HH:mm:ss'),'] DEBUG: endpoint "/balance" request received, params', req.body);
+router.get('/balance', function (req, res) {	
+	console.debug('[',moment().utcOffset(8).format('YYYY-MM-DD HH:mm:ss'),'] DEBUG: endpoint "/balance" request received, params', req.query);
 
-  const user_id = req.body.user_id;
-  const period_fm = req.body.period_fm;
-  const period_to = req.body.period_to;
+  const user_id = req.query.user_id;
+  const period_fm = req.query.period_fm;
+  const period_to = req.query.period_to;
 
 
   res.set('Content-Type', 'application/json');
 
 	let data = _wallet.model()
-						.Where(function(m) { return m.user_id === user_id; })
+						.Where(function(m) { return m.user_id == user_id; })
 						.ToArray()[0];
 
   res.set('Content-Type', 'application/json');
@@ -38,25 +38,30 @@ router.post('/balance', function (req, res) {
   	res.status(404).send({error: "not found"});
 });
 
-/* list transacdtions api */
-router.post('/txn', function (req, res) {	
-	console.debug('[',moment().utcOffset(8).format('YYYY-MM-DD HH:mm:ss'),'] DEBUG: endpoint "/txn" request received, params', req.body);
+/* list transactions api */
+router.get('/txn', function (req, res) {	
+	console.debug('[',moment().utcOffset(8).format('YYYY-MM-DD HH:mm:ss'),'] DEBUG: endpoint "/txn" request received, params', req.query);
 
-  const user_id = req.body.user_id;
-  const period_fm = req.body.period_fm;
-  const period_to = req.body.period_to;
+  const user_id = req.query.user_id;
+  const period_fm = req.query.period_fm;
+  const period_to = req.query.period_to;
+  const lastnrec = req.query.lastnrec;
 
 
   res.set('Content-Type', 'application/json');
 
 	let data = _txn.model()
-						.Where(function(m) { return m.user_id === user_id; })
+						.Where(function(m) { return m.user_id == user_id; })
+						.OrderByDescending(function(m) { return m.timestamp })
 						.ToArray();
 
 	if (data)
-  	res.status(200).send(data);
+		if (lastnrec)	
+  			res.status(200).send(data.slice(0, Math.min(lastnrec, data.length)));
+		else
+  			res.status(200).send(data);
 	else
-  	res.status(404).send({error: "not found"});
+  		res.status(404).send({error: "not found"});
 
 });
 

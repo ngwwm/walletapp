@@ -21,34 +21,34 @@ http.createServer(app).listen(port, hostname, function() {
 
 	console.log(`\n\nEndpoint Examples:\n
 Check Balance:\n
-  curl -X POST -k http://${hostname}:${port}/api/v1/wallet/balance \\
+  curl -X GET -sk http://${hostname}:${port}/api/v1/wallet/balance \\
     -H 'Content-Type: application/json' \\
-    --data '{"user_id":1001}'
+    --data '{"user_id":1001}' | jpp
 
 Transaction History:\n
-  curl -X POST -k http://${hostname}:${port}/api/v1/wallet/txn \\
+  curl -X GET -sk http://${hostname}:${port}/api/v1/wallet/txn \\
     -H 'Content-Type: application/json' \\
-    --data '{"user_id":1001}'
+    --data '{"user_id":1001}' | jpp
 
 Deposit:\n
-  curl -X POST -k http://${hostname}:${port}/api/v1/wallet/deposit \\
+  curl -X POST -sk http://${hostname}:${port}/api/v1/wallet/deposit \\
     -H 'Content-Type: application/json' \\
-    --data '{"user_id":1001, "amount":10, "currency": "hkd"}'
+    --data '{"user_id":1001, "amount":10, "currency": "hkd"}' | jpp
 
 Withdraw:\n
-  curl -X POST -k http://${hostname}:${port}/api/v1/wallet/withdraw \\
+  curl -X POST -sk http://${hostname}:${port}/api/v1/wallet/withdraw \\
     -H 'Content-Type: application/json' \\
-    --data '{"user_id":1001, "amount":10, "currency": "hkd"}'
+    --data '{"user_id":1001, "amount":10, "currency": "hkd"}' | jpp
 
 Transfer:\n
-  curl -X POST -k http://${hostname}:${port}/api/v1/wallet/transfer \\
+  curl -X POST -sk http://${hostname}:${port}/api/v1/wallet/transfer \\
     -H 'Content-Type: application/json' \\
-    --data '{"user_id":1001, "amount":10, "currency": "hkd", "touser_id": 1002}'
+    --data '{"user_id":1001, "amount":10, "currency": "hkd", "touser_id": 1002}' | jpp
 
 Convert:\n
-  curl -X POST -k http://${hostname}:${port}/api/v1/wallet/convert \\
+  curl -X POST -sk http://${hostname}:${port}/api/v1/wallet/convert \\
     -H 'Content-Type: application/json' \\
-    --data '{"user_id":1001, "amount":10, "base_currency": "usd", "quote_currency": "hkd"}'
+    --data '{"user_id":1001, "amount":10, "base_currency": "usd", "quote_currency": "hkd"}' | jpp
 
 Enjoy!
 `
