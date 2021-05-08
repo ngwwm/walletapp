@@ -1,0 +1,18 @@
+GET https://www.google.com
+
+###
+
+GET http://localhost:15000/api/v1/wallet/balance?user_id=1001 HTTP/1.1
+
+###
+GET http://localhost:15000/api/v1/wallet/txn?user_id=1001 HTTP/1.1
+
+###
+POST http://localhost:15000/api/v1/wallet/deposit HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": 1001,
+    "currency": "hkd",
+    "amount": 10
+}
